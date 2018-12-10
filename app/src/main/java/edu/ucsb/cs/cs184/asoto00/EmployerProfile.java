@@ -54,6 +54,7 @@ public class EmployerProfile extends AppCompatActivity implements View.OnClickLi
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
         allStudents = new ArrayList<>();
+        StudentIds = new ArrayList<>();
 
 
         if(user == null){
