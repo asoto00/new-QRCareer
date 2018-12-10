@@ -185,6 +185,8 @@ public class EmployerProfile extends AppCompatActivity implements View.OnClickLi
         StudentIds.remove(position);
         mAdapter.notifyItemRemoved(position);
 
+        
+
 
 
     }
