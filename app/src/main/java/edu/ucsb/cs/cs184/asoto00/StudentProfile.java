@@ -109,7 +109,29 @@ public class StudentProfile extends AppCompatActivity implements View.OnClickLis
         SGPA.setText(studentUser.GPA.toString());
 
     }
-
+public void editInfo(){
+    SName.setFocusableInTouchMode(true);
+    SName.setFocusable (true);
+    SName.requestFocus();
+    //SName.setEnabled(true);
+    SPhone.setFocusableInTouchMode(true);
+    SPhone.setFocusable(true);
+    SPhone.requestFocus();
+    //SPhone.setEnabled(true);
+    SMajor.setFocusableInTouchMode(true);
+    SMajor.setFocusable(true);
+    SMajor.requestFocus();
+    //SMajor.setEnabled(true);
+    SGYear.setFocusableInTouchMode(true);
+    SGYear.setFocusable(true);
+    SGYear.requestFocus();
+    //SGYear.setEnabled(true);
+    SGPA.setFocusableInTouchMode(true);
+    SGPA.setFocusable(true);
+    SGPA.requestFocus();
+    //SGPA.setEnabled(true);
+    Toast.makeText(this,"Test1",Toast.LENGTH_SHORT).show();
+}
     public void saveInfo(){
         studentUser.Name = SName.getText().toString();
 
@@ -130,15 +152,15 @@ public class StudentProfile extends AppCompatActivity implements View.OnClickLis
 
 
         SName.setFocusable (false);
-        SName.setEnabled(false);
+       // SName.setEnabled(false);
         SPhone.setFocusable(false);
-        SPhone.setEnabled(false);
+       // SPhone.setEnabled(false);
         SMajor.setFocusable(false);
-        SMajor.setEnabled(false);
+       // SMajor.setEnabled(false);
         SGYear.setFocusable(false);
-        SGYear.setEnabled(false);
+       // SGYear.setEnabled(false);
         SGPA.setFocusable(false);
-        SGPA.setEnabled(false);
+        //SGPA.setEnabled(false);
 
         Toast.makeText(this,"Test2",Toast.LENGTH_SHORT).show();
     }
@@ -160,17 +182,7 @@ public class StudentProfile extends AppCompatActivity implements View.OnClickLis
         }
         else if (v==editInfo){
             //make all shits editable
-            SName.setFocusable (true);
-            SName.setEnabled(true);
-            SPhone.setFocusable(true);
-            SPhone.setEnabled(true);
-            SMajor.setFocusable(true);
-            SMajor.setEnabled(true);
-            SGYear.setFocusable(true);
-            SGYear.setEnabled(true);
-            SGPA.setFocusable(true);
-            SGPA.setEnabled(true);
-            Toast.makeText(this,"Test1",Toast.LENGTH_SHORT).show();
+           editInfo();
         }
         else if(v==saveInfoBtn){
             saveInfo();
