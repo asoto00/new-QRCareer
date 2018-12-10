@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EmployerRegister">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/TitleEmployer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/employer_register"
+            android:layout_gravity="center_horizontal"/>
+
+
+        <EditText
+            android:id="@+id/EName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:hint="@string/name" />
+
+        <EditText
+            android:id="@+id/Company"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:inputType="text"
+            android:hint ="@string/company_name"
+            app:layout_constraintTop_toBottomOf="@id/EName" />
+
+        <EditText
+            android:id="@+id/EPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:inputType="phone"
+            android:hint="@string/phone_number"
+            app:layout_constraintTop_toBottomOf="@+id/Company" />
+
+
+        <EditText
+            android:id="@+id/employerEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:inputType="textEmailAddress"
+            android:hint="@string/email"
+            app:layout_constraintTop_toBottomOf="@+id/EPhone" />
+
+        <EditText
+            android:id="@+id/employerPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:inputType="textPassword"
+            android:hint = "@string/password"
+            app:layout_constraintTop_toBottomOf="@+id/employerEmail" />
+
+        <Button
+            android:id="@+id/EReg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/register"
+            app:layout_constraintTop_toBottomOf="@+id/employerPassword" />
+
+        <TextView
+            android:id="@+id/Student"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/are_you_a_student_register_here"
+            android:textAlignment="center"
+            app:layout_constraintTop_toBottomOf="@+id/EReg" />
+
+        <TextView
+            android:id="@+id/SignIn2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/sign_in_here"
+            android:textAlignment="center"
+            app:layout_constraintTop_toBottomOf="@+id/Student" />
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

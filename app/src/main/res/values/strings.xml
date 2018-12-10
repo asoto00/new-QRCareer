@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">QRCareer</string>
+    <string name="app_name_with_index">QRCareer Resume (%1$d/%2$d)</string>
+    <string name="title_activity_login">Sign in</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="studentnumber">StudentNumber</string>
+    <string name="turn_off_flashlight">FlashLight on</string>
+    <string name="turn_on_flashlight">flashLight off</string>
+    <string name="title_activity_main">QR and Barcode Scanner</string>
+    <string name="message">Scan a QR code by centering it in the rectangle below and briefly holding.</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="contact_information">Contact Information</string>
+    <string name="student_email">Student Email</string>
+    <string name="student_major">Student Major</string>
+    <string name="academic_information">Academic Information</string>
+    <string name="student_gpa">Student GPA</string>
+    <string name="student_graduation_year">Student Graduation Year</string>
+    <string name="student_phone_number">Student Phone Number</string>
+    <string name="view_student_resume">View Student Resume</string>
+    <string name="previous_page">Previous Page</string>
+    <string name="next_page">Next Page</string>
+    <string name="qrcode_to_my_profile">QRCode to my Profile</string>
+    <string name="studentphone">StudentPhone</string>
+    <string name="student_name">Student Name</string>
+    <string name="studentgraduationyear">StudentGraduationYear</string>
+    <string name="student_phone">Student Phone</string>
+    <string name="my_profile">My Profile</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="press_to_scan">Press to Scan</string>
+    <string name="employer_register">Employer Register</string>
+    <string name="name">Name</string>
+    <string name="company_name">Company Name</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="are_you_a_student_register_here">Are you a Student? Register Here</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="email">Email</string>
+    <string name="sign_in_here">Sign In Here</string>
+</resources>

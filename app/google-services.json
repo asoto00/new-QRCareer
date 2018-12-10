@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "972436311405",
+    "firebase_url": "https://qrcareer-e44a0.firebaseio.com",
+    "project_id": "qrcareer-e44a0",
+    "storage_bucket": "qrcareer-e44a0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:972436311405:android:177388c53316e950",
+        "android_client_info": {
+          "package_name": "edu.ucsb.cs.cs184.asoto00"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "972436311405-7sh0botcg9qg8hn2rv95q4gba00b40g9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8TjW1gH74D07ARywh2ZXmK4Nze_XsuiU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
