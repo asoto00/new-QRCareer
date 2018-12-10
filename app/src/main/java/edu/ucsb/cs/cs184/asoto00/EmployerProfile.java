@@ -109,6 +109,27 @@ public class EmployerProfile extends AppCompatActivity implements View.OnClickLi
         CECompany.setText(employerUser.Company);
         CEPhone.setText(employerUser.PhoneNumber.replaceFirst("(\\d{3})(\\d{3})(\\d+)", "($1) $2-$3"));
 
+        DatabaseReference studentReference = FirebaseDatabase.getInstance().getReference().child("users").child(user.getUid()).child("students");
+        studentReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot snap : dataSnapshot.getChildren()){
+                    StudentUser studentUser = snap.getValue(StudentUser.class);
+                    if(studentUser.UserID != null && !StudentIds.contains(studentUser.UserID)){
+                        allStudents.add(studentUser);
+                        StudentIds.add(studentUser.UserID);
+                        mAdapter.notifyDataSetChanged();
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
     @Override
@@ -122,7 +143,7 @@ public class EmployerProfile extends AppCompatActivity implements View.OnClickLi
             } else {
                 String uid = result.getContents();
 
-                DatabaseReference studentReference = FirebaseDatabase.getInstance().getReference().child(uid);
+                DatabaseReference studentReference = FirebaseDatabase.getInstance().getReference().child("users").child(uid);
                 studentReference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

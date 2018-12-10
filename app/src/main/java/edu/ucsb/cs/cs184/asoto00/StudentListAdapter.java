@@ -62,7 +62,7 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
             public void onClick(View v) {
 
                 EmployerProfile.removeStudent(position);
-                allStudents.remove(position);
+                //allStudents.remove(position);
 
             }
         });
