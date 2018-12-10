@@ -62,12 +62,12 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
-    <TextView
+    <EditText
         android:id="@+id/Link"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:inputType=""
+        android:inputType="textUri"
         android:textAppearance="?android:attr/textAppearanceMedium"
         app:layout_constraintBottom_toTopOf="@+id/generatorButton"
         app:layout_constraintEnd_toEndOf="parent"

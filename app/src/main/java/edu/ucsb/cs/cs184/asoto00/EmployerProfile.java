@@ -34,8 +34,8 @@ public class EmployerProfile extends AppCompatActivity implements View.OnClickLi
 
     protected RecyclerView recyclerView;
     static StudentListAdapter mAdapter;
-    static ArrayList<StudentUser> allStudents;
-    static ArrayList<String> StudentIds;
+    public static ArrayList<StudentUser> allStudents;
+    public static ArrayList<String> StudentIds;
     protected RecyclerView.LayoutManager mLayoutManger;
     protected FloatingActionButton addStudentButton;
 
@@ -55,6 +55,7 @@ public class EmployerProfile extends AppCompatActivity implements View.OnClickLi
         user = firebaseAuth.getCurrentUser();
         allStudents = new ArrayList<>();
         StudentIds = new ArrayList<>();
+
 
 
         if(user == null){
@@ -136,11 +137,12 @@ public class EmployerProfile extends AppCompatActivity implements View.OnClickLi
 
         studentReference.addListenerForSingleValueEvent(valueEventListener);
 
-
-
+        //updateStudentInfo();
 
 
     }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -155,7 +157,7 @@ public class EmployerProfile extends AppCompatActivity implements View.OnClickLi
 
                 DatabaseReference studentReference2 = FirebaseDatabase.getInstance().getReference().child("users").child(uid);
 
-                studentReference2.addListenerForSingleValueEvent(new ValueEventListener() {
+                studentReference2.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         StudentUser tempStudent = dataSnapshot.getValue(StudentUser.class);
@@ -209,10 +211,37 @@ public class EmployerProfile extends AppCompatActivity implements View.OnClickLi
         }
     }
 
+    public void updateStudentInfo(){
+        Toast.makeText(this, "" + allStudents.size(), Toast.LENGTH_LONG).show();
+
+        DatabaseReference StudentUserReference;
+        //if(!StudentIds.isEmpty()){
+        for(int i = 0; i < StudentIds.size(); i++){
+
+            StudentUserReference = FirebaseDatabase.getInstance().getReference().child("users").child(StudentIds.get(i));
+            StudentUserReference.addValueEventListener(new ValueEventListener() {
+
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    StudentUser temp = dataSnapshot.getValue(StudentUser.class);
+                    allStudents.set(StudentIds.indexOf(temp.UserID),temp);
+                    DatabaseReference employerStudents = FirebaseDatabase.getInstance().getReference();
+                    employerStudents.child("users").child(user.getUid()).child("Students").child(temp.UserID).setValue(temp);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }
+        // }
+    }
+
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(this, "" + position, Toast.LENGTH_SHORT).show();
         StudentUser studentToDisplay = allStudents.get(position);
+
         StudentDialogFragment studentDialogFragment = StudentDialogFragment.newInstance(studentToDisplay);
         studentDialogFragment.show(getSupportFragmentManager(),"dialog");
     }

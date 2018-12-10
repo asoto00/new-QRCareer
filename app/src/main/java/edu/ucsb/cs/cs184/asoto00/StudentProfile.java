@@ -34,6 +34,7 @@ public class StudentProfile extends AppCompatActivity implements View.OnClickLis
     private EditText SMajor;
     private EditText SGYear;
     private EditText SGPA;
+    private EditText Link;
     private Button SignOutButton;
     private Button genBtn;
     private ImageView qrImage;
@@ -88,6 +89,7 @@ public class StudentProfile extends AppCompatActivity implements View.OnClickLis
         editInfo= (Button)findViewById(R.id.editInfo);
         saveInfoBtn=(Button)findViewById(R.id.saveInfo);
         AddLinkBtn=(Button)findViewById(R.id.addLink);
+        Link = (EditText) findViewById(R.id.Link);
 
 
         SignOutButton = (Button) findViewById(R.id.SignOutButton);
@@ -140,15 +142,9 @@ public void editInfo(){
         studentUser.GradYear = Integer.parseInt( SGYear.getText().toString());
         studentUser.GPA= Float.parseFloat(SGPA.getText().toString());
         Toast.makeText(this, Float.toString(studentUser.GPA), Toast.LENGTH_SHORT);
-        //user.updatePhoneNumber(studentUser.Phone);
-        //databaseReference.child("users").child(user.getUid()).;
-        String n = SName.getText().toString().trim();
-        String p = SPhone.getText().toString().trim();
-        String m = SMajor.getText().toString().trim();
-        int gy = Integer.parseInt(SGYear.getText().toString());
-        Float gpa = Float.parseFloat(SGPA.getText().toString());
 
-       // writeNewUser(user.getUid(),n,p,m,gy,gpa,user.getEmail());
+        DatabaseReference newDatabaseReference = FirebaseDatabase.getInstance().getReference();
+        newDatabaseReference.child("users").child(user.getUid()).setValue(studentUser);
 
 
         SName.setFocusable (false);
@@ -162,15 +158,13 @@ public void editInfo(){
         SGPA.setFocusable(false);
         //SGPA.setEnabled(false);
 
-        Toast.makeText(this,"Test2",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Information Saved Successfully",Toast.LENGTH_SHORT).show();
     }
 
+    public void addLink(){
 
-//    private void writeNewUser(String userId, String name, String phone, String major,int gradYear, Float gpa, String email) {
-//        StudentUser user = new StudentUser(name,phone,major,gradYear,gpa,email);
-//
-//        databaseReference.child("users").child(userId).setValue(user);
-//    }
+    }
+
 
     @Override
     public void onClick(View v) {
@@ -190,6 +184,16 @@ public void editInfo(){
         }
         else if(v==AddLinkBtn){
             //add link to linkedIn
+            if(Link.getText() != null && !Link.getText().toString().equals("")){
+                studentUser.LinkedInLink = Link.getText().toString().trim();
+                DatabaseReference addlinkReference = FirebaseDatabase.getInstance().getReference();
+                addlinkReference.child("users").child(user.getUid()).setValue(studentUser);
+
+            }else{
+                Toast.makeText(this, "Please Enter a Valid Link", Toast.LENGTH_SHORT);
+            }
+
+
         }
 
         else if (v == genBtn) {

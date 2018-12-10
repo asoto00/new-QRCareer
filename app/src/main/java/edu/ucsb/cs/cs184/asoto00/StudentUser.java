@@ -9,6 +9,7 @@ public class StudentUser {
     public String Type = "student";
     public String Email;
     public String UserID;
+    public String LinkedInLink = "@@@@";
 
     public StudentUser(){
 

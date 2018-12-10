@@ -3,7 +3,9 @@ package edu.ucsb.cs.cs184.asoto00;
 
 import android.content.Intent;
 import android.graphics.Point;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.Gravity;
@@ -13,6 +15,13 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 /**
@@ -63,6 +72,8 @@ public class StudentDialogFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_student_dialog, container, false);
         studentName = view.findViewById(R.id.student_name_dialog);
@@ -75,7 +86,24 @@ public class StudentDialogFragment extends DialogFragment {
         pdfButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(new Intent(getContext(), PdfFragment.class));
+                DatabaseReference studentReference = FirebaseDatabase.getInstance().getReference().child("users").child(currentStudent.UserID);
+                studentReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        currentStudent = dataSnapshot.getValue(StudentUser.class);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+                if(currentStudent.LinkedInLink != "@@@@" && currentStudent.LinkedInLink != null && currentStudent.LinkedInLink != ""){
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(currentStudent.LinkedInLink));
+                    startActivity(intent);
+                }else{
+                    
+                }
             }
         });
         getDialogInformation();
