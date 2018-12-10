@@ -26,6 +26,7 @@ public class StudentDialogFragment extends DialogFragment {
     private TextView studentMajor;
     private TextView studentGPA;
     private Button pdfButton;
+    private static StudentUser currentStudent;
 
     String studentNameString;
     String studentMajorString;
@@ -49,7 +50,7 @@ public class StudentDialogFragment extends DialogFragment {
         args.putFloat("studentGPA", studentUser.GPA);
         args.putInt("studentGradYear", studentUser.GradYear);
         args.putString("studentMajor", studentUser.Major);
-
+        currentStudent = studentUser;
 
         return frag;
     }
@@ -57,7 +58,6 @@ public class StudentDialogFragment extends DialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getDialogInformation();
     }
 
     @Override
@@ -75,9 +75,11 @@ public class StudentDialogFragment extends DialogFragment {
         pdfButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), PdfFragment.class));
+                //startActivity(new Intent(getContext(), PdfFragment.class));
             }
         });
+        getDialogInformation();
+
         setDialogInformation();
         setWindowDimensions();
 
@@ -93,12 +95,12 @@ public class StudentDialogFragment extends DialogFragment {
 
     }
     public void getDialogInformation() {
-        studentEmailString = getArguments().getString("studentEmail");
-        studentNameString = getArguments().getString("studentName");
-        studentPhoneString = getArguments().getString("studentPhone");
-        studentGPAString = getArguments().getFloat("studentGPA");
-        studentGradInt = getArguments().getInt("studentGradYear");
-        studentMajorString = getArguments().getString("studentMajor");
+        studentEmailString = currentStudent.Email;//getArguments().getString("studentEmail");
+        studentNameString = currentStudent.Name;//getArguments().getString("studentName");
+        studentPhoneString = currentStudent.Phone;// getArguments().getString("studentPhone");
+        studentGPAString = currentStudent.GPA;//getArguments().getFloat("studentGPA");
+        studentGradInt = currentStudent.GradYear;//getArguments().getInt("studentGradYear");
+        studentMajorString = currentStudent.Major;//getArguments().getString("studentMajor");
     }
 
     public void setWindowDimensions() {
