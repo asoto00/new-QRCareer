@@ -118,6 +118,7 @@ public class EmployerProfile extends AppCompatActivity implements View.OnClickLi
                     if(studentUser.UserID != null && !StudentIds.contains(studentUser.UserID)){
                         allStudents.add(studentUser);
                         StudentIds.add(studentUser.UserID);
+                        mAdapter.updateData(allStudents);
                         mAdapter.notifyDataSetChanged();
                     }
 
@@ -153,7 +154,8 @@ public class EmployerProfile extends AppCompatActivity implements View.OnClickLi
                             StudentIds.add(tempStudent.UserID);
                             allStudents.add(tempStudent);
                             itemPosition = allStudents.indexOf(tempStudent);
-                            mAdapter.notifyItemInserted(allStudents.indexOf(tempStudent));
+                            mAdapter.updateData(allStudents);
+                            mAdapter.notifyDataSetChanged();
                             databaseReference = FirebaseDatabase.getInstance().getReference();
                             databaseReference.child("users").child(user.getUid()).child("Students").child(tempStudent.UserID).setValue(tempStudent);
 
@@ -162,7 +164,8 @@ public class EmployerProfile extends AppCompatActivity implements View.OnClickLi
                             int index = StudentIds.indexOf(tempStudent.UserID);
                             allStudents.set(index, tempStudent);
                             itemPosition = index;
-                            mAdapter.notifyItemChanged(index);
+                            mAdapter.updateData(allStudents);
+                            mAdapter.notifyDataSetChanged();
                             databaseReference = FirebaseDatabase.getInstance().getReference();
                             databaseReference.child("users").child(user.getUid()).child("Students").child(tempStudent.UserID).setValue(tempStudent);
 
@@ -207,7 +210,8 @@ public class EmployerProfile extends AppCompatActivity implements View.OnClickLi
         removedStudentReference.child("users").child(user.getUid()).child("Students").child(StudentId).removeValue();
         allStudents.remove(position);
         StudentIds.remove(position);
-        mAdapter.notifyItemRemoved(position);
+        mAdapter.updateData(allStudents);
+        mAdapter.notifyDataSetChanged();
 
 
 

@@ -67,6 +67,11 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
             }
         });
     }
+
+    public void updateData(ArrayList<StudentUser> students){
+        allStudents = students;
+    }
+
     @Override
     public int getItemCount() {
         return allStudents.size();
