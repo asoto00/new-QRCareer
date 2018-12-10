@@ -31,6 +31,7 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
             studentName = view.findViewById(R.id.student_name_row);
             studentPhone = view.findViewById(R.id.student_phone_row);
             deleteButton = view.findViewById(R.id.deleteRowButton);
+            view.setOnClickListener(this);
 
         }
 

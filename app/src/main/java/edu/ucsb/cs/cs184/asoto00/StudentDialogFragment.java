@@ -40,6 +40,20 @@ public class StudentDialogFragment extends DialogFragment {
         // Required empty public constructor
     }
 
+    public static StudentDialogFragment newInstance(StudentUser studentUser){
+        StudentDialogFragment frag = new StudentDialogFragment();
+        Bundle args = new Bundle();
+        args.putString("studentEmail", studentUser.Email);
+        args.putString("studentName" , studentUser.Name);
+        args.putString("studentPhone", studentUser.Phone);
+        args.putFloat("studentGPA", studentUser.GPA);
+        args.putInt("studentGradYear", studentUser.GradYear);
+        args.putString("studentMajor", studentUser.Major);
+
+
+        return frag;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

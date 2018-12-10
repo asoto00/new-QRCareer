@@ -212,6 +212,9 @@ public class EmployerProfile extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onItemClick(View view, int position) {
         Toast.makeText(this, "" + position, Toast.LENGTH_SHORT).show();
+        StudentUser studentToDisplay = allStudents.get(position);
+        StudentDialogFragment studentDialogFragment = StudentDialogFragment.newInstance(studentToDisplay);
+        studentDialogFragment.show(getSupportFragmentManager(),"dialog");
     }
 
     public static void removeStudent(int position){
