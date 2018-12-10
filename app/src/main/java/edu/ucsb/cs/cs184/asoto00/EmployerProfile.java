@@ -132,6 +132,7 @@ public class EmployerProfile extends AppCompatActivity implements View.OnClickLi
                             allStudents.add(tempStudent);
                             itemPosition = allStudents.indexOf(tempStudent);
                             mAdapter.notifyItemInserted(allStudents.indexOf(tempStudent));
+                            databaseReference = FirebaseDatabase.getInstance().getReference();
                             databaseReference.child("users").child(user.getUid()).child("Students").child(tempStudent.UserID).setValue(tempStudent);
 
 
@@ -140,6 +141,7 @@ public class EmployerProfile extends AppCompatActivity implements View.OnClickLi
                             allStudents.set(index, tempStudent);
                             itemPosition = index;
                             mAdapter.notifyItemChanged(index);
+                            databaseReference = FirebaseDatabase.getInstance().getReference();
                             databaseReference.child("users").child(user.getUid()).child("Students").child(tempStudent.UserID).setValue(tempStudent);
 
 
@@ -185,7 +187,7 @@ public class EmployerProfile extends AppCompatActivity implements View.OnClickLi
         StudentIds.remove(position);
         mAdapter.notifyItemRemoved(position);
 
-        
+
 
 
 
