@@ -27,7 +27,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".StudentProfile" />
+        <activity android:name=".StudentProfile"
+            android:launchMode="singleTask"/>
         <activity android:name=".EmployerRegister" />
         <activity android:name=".EmployerProfile"></activity>
     </application>

@@ -1,111 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StudentProfile">
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    tools:context=".StudentProfile"
+    android:orientation="vertical">
 
 
-
-    <TextView
+    <EditText
         android:id="@+id/SName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:focusable="false"
+        android:editable="false"
         android:text="@string/student_name"
         android:textAlignment="textStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/common_google_signin_btn_text_dark_focused"
-        />
+        android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
-        <TextView
-            android:id="@+id/SPhone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="student_phone"
-            android:textAlignment="textStart"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
-             />
-        <TextView
-            android:id="@+id/SMajor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="studentphone"
-            android:textAlignment="textStart"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
-             />
-    <TextView
+    <EditText
+        android:id="@+id/SPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:inputType="phone"
+        android:text="student_phone"
+        android:textAlignment="textStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+    <EditText
+        android:id="@+id/SMajor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:text="studentphone"
+        android:textAlignment="textStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+    <EditText
         android:id="@+id/SGYear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:focusable="false"
+        android:inputType="number"
         android:text="studentgraduationyear"
         android:textAlignment="textStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/common_google_signin_btn_text_dark_focused"
-        />
+        android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
-    <TextView
+    <EditText
         android:id="@+id/SGPA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
+        android:inputType="numberDecimal"
         android:text="@string/student_gpa"
         android:textAlignment="textStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/common_google_signin_btn_text_dark_focused"
-/>
+        android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
-        <Button
-            android:id="@+id/generatorButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Generate QR"
-            />
-    <ImageView
-        android:id="@+id/qrImage"
+    <TextView
+        android:id="@+id/Link"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-       />
+        android:clickable="true"
+        android:inputType=""
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        app:layout_constraintBottom_toTopOf="@+id/generatorButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/addLink"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Link"
+        />
+    <Button
+        android:id="@+id/editInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Edit Info"
+        />
+
+    <Button
+        android:id="@+id/saveInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save Info"
+        />
+
+    <Button
+        android:id="@+id/generatorButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Generate QR"
+        />
 
     <Button
         android:id="@+id/SignOutButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="sign_out"
-       />
+        />
 
-    <!--<TextView-->
-        <!--android:id="@+id/myProfileTitle"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="@string/my_profile"-->
-        <!--android:textAppearance="@style/TextAppearance.AppCompat.Large"-->
-        <!--android:textAlignment="center"-->
-        <!--android:textColor="@color/common_google_signin_btn_text_dark_focused"-->
-        <!--android:textStyle="bold"-->
-        <!--app:layout_constraintBottom_toTopOf="@+id/SName"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent" />-->
 
-    <!--<TextView-->
-        <!--android:id="@+id/QRProfileTitle"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="@string/qrcode_to_my_profile"-->
-        <!--android:textAlignment="center"-->
-        <!--android:textAppearance="@style/TextAppearance.AppCompat.Large"-->
-        <!--android:textColor="@color/common_google_signin_btn_text_dark_focused"-->
-        <!--android:textStyle="bold"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@id/SGPA" />-->
+    <ImageView
+        android:id="@+id/qrImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
 
-    </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

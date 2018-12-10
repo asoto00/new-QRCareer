@@ -7,8 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -27,14 +29,17 @@ import java.util.Arrays;
 
 public class StudentProfile extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView SName;
-    private TextView SPhone;
-    private TextView SMajor;
-    private TextView SGYear;
-    private TextView SGPA;
+    private EditText SName;
+    private EditText SPhone;
+    private EditText SMajor;
+    private EditText SGYear;
+    private EditText SGPA;
     private Button SignOutButton;
     private Button genBtn;
     private ImageView qrImage;
+    private Button editInfo;
+    private Button saveInfoBtn;
+    private Button AddLinkBtn;
     //private ImageView QRCode;
 
     private FirebaseAuth firebaseAuth;
@@ -49,7 +54,7 @@ public class StudentProfile extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_student_profile);
 
         firebaseAuth = FirebaseAuth.getInstance();
-         user = firebaseAuth.getCurrentUser();
+        user = firebaseAuth.getCurrentUser();
 
 
         if(user == null){
@@ -73,20 +78,28 @@ public class StudentProfile extends AppCompatActivity implements View.OnClickLis
         }
 
 
-        SName = (TextView) findViewById(R.id.SName);
-        SPhone = (TextView) findViewById(R.id.SPhone);
-        SMajor = (TextView) findViewById(R.id.SMajor);
-        SGYear = (TextView) findViewById(R.id.SGYear);
-        SGPA = (TextView) findViewById(R.id.SGPA);
+        SName = (EditText) findViewById(R.id.SName);
+        SPhone = (EditText) findViewById(R.id.SPhone);
+        SMajor = (EditText) findViewById(R.id.SMajor);
+        SGYear = (EditText) findViewById(R.id.SGYear);
+        SGPA = (EditText) findViewById(R.id.SGPA);
         genBtn= (Button) findViewById(R.id.generatorButton);
         qrImage= (ImageView) findViewById(R.id.qrImage);
+        editInfo= (Button)findViewById(R.id.editInfo);
+        saveInfoBtn=(Button)findViewById(R.id.saveInfo);
+        AddLinkBtn=(Button)findViewById(R.id.addLink);
+
 
         SignOutButton = (Button) findViewById(R.id.SignOutButton);
 
         SignOutButton.setOnClickListener(this);
         genBtn.setOnClickListener(this);
+        editInfo.setOnClickListener(this);
+        saveInfoBtn.setOnClickListener(this);
+        AddLinkBtn.setOnClickListener(this);
 
     }
+
 
     public void updateInfo(){
         SName.setText(studentUser.Name);
@@ -97,6 +110,46 @@ public class StudentProfile extends AppCompatActivity implements View.OnClickLis
 
     }
 
+    public void saveInfo(){
+        studentUser.Name = SName.getText().toString();
+
+        studentUser.Phone = SPhone.getText().toString();
+        studentUser.Major = SMajor.getText().toString();
+        studentUser.GradYear = Integer.parseInt( SGYear.getText().toString());
+        studentUser.GPA= Float.parseFloat(SGPA.getText().toString());
+        Toast.makeText(this, Float.toString(studentUser.GPA), Toast.LENGTH_SHORT);
+        //user.updatePhoneNumber(studentUser.Phone);
+        //databaseReference.child("users").child(user.getUid()).;
+        String n = SName.getText().toString().trim();
+        String p = SPhone.getText().toString().trim();
+        String m = SMajor.getText().toString().trim();
+        int gy = Integer.parseInt(SGYear.getText().toString());
+        Float gpa = Float.parseFloat(SGPA.getText().toString());
+
+       // writeNewUser(user.getUid(),n,p,m,gy,gpa,user.getEmail());
+
+
+        SName.setFocusable (false);
+        SName.setEnabled(false);
+        SPhone.setFocusable(false);
+        SPhone.setEnabled(false);
+        SMajor.setFocusable(false);
+        SMajor.setEnabled(false);
+        SGYear.setFocusable(false);
+        SGYear.setEnabled(false);
+        SGPA.setFocusable(false);
+        SGPA.setEnabled(false);
+
+        Toast.makeText(this,"Test2",Toast.LENGTH_SHORT).show();
+    }
+
+
+//    private void writeNewUser(String userId, String name, String phone, String major,int gradYear, Float gpa, String email) {
+//        StudentUser user = new StudentUser(name,phone,major,gradYear,gpa,email);
+//
+//        databaseReference.child("users").child(userId).setValue(user);
+//    }
+
     @Override
     public void onClick(View v) {
         if(v == SignOutButton){
@@ -105,13 +158,35 @@ public class StudentProfile extends AppCompatActivity implements View.OnClickLis
             startActivity(new Intent(this, Sign_In.class));
             finish();
         }
-        if (v == genBtn) {
+        else if (v==editInfo){
+            //make all shits editable
+            SName.setFocusable (true);
+            SName.setEnabled(true);
+            SPhone.setFocusable(true);
+            SPhone.setEnabled(true);
+            SMajor.setFocusable(true);
+            SMajor.setEnabled(true);
+            SGYear.setFocusable(true);
+            SGYear.setEnabled(true);
+            SGPA.setFocusable(true);
+            SGPA.setEnabled(true);
+            Toast.makeText(this,"Test1",Toast.LENGTH_SHORT).show();
+        }
+        else if(v==saveInfoBtn){
+            saveInfo();
+            //save edited shit
+        }
+        else if(v==AddLinkBtn){
+            //add link to linkedIn
+        }
+
+        else if (v == genBtn) {
 //            for(int i=0; i<text2Qr.length ; i++){
 //                r[i] = text2Qr[i].getText().toString().trim();
 //            }
             MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
             try {
-               // String str = Arrays.toString(r);
+                // String str = Arrays.toString(r);
                 // String s = user.
                 BitMatrix bitMatrix = multiFormatWriter.encode(user.getUid(), BarcodeFormat.QR_CODE, 200, 200);
                 BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
@@ -120,6 +195,9 @@ public class StudentProfile extends AppCompatActivity implements View.OnClickLis
             } catch (WriterException e) {
                 e.printStackTrace();
             }
+        }
+        else{
+            Toast.makeText(this, "WTF",Toast.LENGTH_SHORT).show();
         }
     }
 }
