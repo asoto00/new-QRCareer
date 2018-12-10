@@ -133,9 +133,8 @@ public class EmployerProfile extends AppCompatActivity implements View.OnClickLi
             }
         };
 
-        studentReference.addValueEventListener( valueEventListener);
+        studentReference.addListenerForSingleValueEvent(valueEventListener);
 
-        studentReference.removeEventListener(valueEventListener);
 
 
 
@@ -220,10 +219,6 @@ public class EmployerProfile extends AppCompatActivity implements View.OnClickLi
         StudentIds.remove(position);
         mAdapter.updateData(allStudents);
         mAdapter.notifyDataSetChanged();
-
-
-
-
 
     }
 
