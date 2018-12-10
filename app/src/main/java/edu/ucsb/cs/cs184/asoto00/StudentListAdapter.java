@@ -51,6 +51,7 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
     public ViewHolder onCreateViewHolder(final ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.student_row_item, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(view);
+
         return viewHolder;
     }
     @Override
@@ -61,7 +62,8 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
             @Override
             public void onClick(View v) {
 
-                EmployerProfile.removeStudent(position);
+
+                //EmployerProfile.removeStudent(position);
                 //allStudents.remove(position);
 
             }

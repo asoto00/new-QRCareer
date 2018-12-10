@@ -109,8 +109,8 @@ public class EmployerProfile extends AppCompatActivity implements View.OnClickLi
         CECompany.setText(employerUser.Company);
         CEPhone.setText(employerUser.PhoneNumber.replaceFirst("(\\d{3})(\\d{3})(\\d+)", "($1) $2-$3"));
 
-        DatabaseReference studentReference = FirebaseDatabase.getInstance().getReference().child("users").child(user.getUid()).child("students");
-        studentReference.addValueEventListener(new ValueEventListener() {
+        DatabaseReference studentReference = FirebaseDatabase.getInstance().getReference().child("users").child(user.getUid()).child("Students");
+        ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot snap : dataSnapshot.getChildren()){
@@ -120,6 +120,8 @@ public class EmployerProfile extends AppCompatActivity implements View.OnClickLi
                         StudentIds.add(studentUser.UserID);
                         mAdapter.updateData(allStudents);
                         mAdapter.notifyDataSetChanged();
+
+
                     }
 
                 }
@@ -129,7 +131,13 @@ public class EmployerProfile extends AppCompatActivity implements View.OnClickLi
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        };
+
+        studentReference.addValueEventListener( valueEventListener);
+
+        studentReference.removeEventListener(valueEventListener);
+
+
 
     }
 
