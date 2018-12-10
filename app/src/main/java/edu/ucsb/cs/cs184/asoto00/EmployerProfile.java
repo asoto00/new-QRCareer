@@ -25,7 +25,7 @@ import com.google.zxing.integration.android.IntentResult;
 
 import java.util.ArrayList;
 
-public class EmployerProfile extends AppCompatActivity implements View.OnClickListener {
+public class EmployerProfile extends AppCompatActivity implements View.OnClickListener, StudentListAdapter.ItemClickListener {
 
     private TextView CEName;
     private TextView CECompany;
@@ -79,6 +79,7 @@ public class EmployerProfile extends AppCompatActivity implements View.OnClickLi
         recyclerView = findViewById(R.id.recyclerView);
 
         mAdapter = new StudentListAdapter(allStudents);
+        mAdapter.setClickListener(this);
         mLayoutManger = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManger);
         recyclerView.setAdapter(mAdapter);
@@ -138,6 +139,7 @@ public class EmployerProfile extends AppCompatActivity implements View.OnClickLi
 
 
 
+
     }
 
     @Override
@@ -151,8 +153,9 @@ public class EmployerProfile extends AppCompatActivity implements View.OnClickLi
             } else {
                 String uid = result.getContents();
 
-                DatabaseReference studentReference = FirebaseDatabase.getInstance().getReference().child("users").child(uid);
-                studentReference.addValueEventListener(new ValueEventListener() {
+                DatabaseReference studentReference2 = FirebaseDatabase.getInstance().getReference().child("users").child(uid);
+
+                studentReference2.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         StudentUser tempStudent = dataSnapshot.getValue(StudentUser.class);
@@ -206,8 +209,9 @@ public class EmployerProfile extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-    public void onItemlick(View view, int position) {
-
+    @Override
+    public void onItemClick(View view, int position) {
+        Toast.makeText(this, "" + position, Toast.LENGTH_SHORT).show();
     }
 
     public static void removeStudent(int position){

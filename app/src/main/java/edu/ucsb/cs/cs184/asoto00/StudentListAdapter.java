@@ -10,19 +10,20 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.ViewHolder>  {
+public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.ViewHolder> {
     // needs to be private ArrayList<StudentUser> allStudents;
     private ArrayList<StudentUser> allStudents;
     // StudentDialogFragment needs to be implemented correctly.
     private StudentDialogFragment dialogFragment;
-    private ItemClickListener itemClickListener;
+    private static ItemClickListener itemClickListener;
 
 
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private final TextView studentName;
         private final TextView studentPhone;
         private final ImageButton deleteButton;
+
 
 
         public ViewHolder(View view) {
@@ -40,7 +41,12 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
         public TextView getStudentPhoneView() { return studentPhone; }
         public ImageButton getDeleteButtonView() { return deleteButton; }
 
-
+        @Override
+        public void onClick(View v) {
+            if(itemClickListener != null){
+                itemClickListener.onItemClick(v, getAdapterPosition());
+            }
+        }
     }
     public StudentListAdapter(ArrayList<StudentUser> students) {
         allStudents = new ArrayList<StudentUser>();
@@ -51,6 +57,7 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
     public ViewHolder onCreateViewHolder(final ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.student_row_item, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(view);
+
 
         return viewHolder;
     }
@@ -79,12 +86,12 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
         return allStudents.size();
     }
 
-    void setClickListener(ItemClickListener itemClickListener){
+    public void setClickListener(ItemClickListener itemClickListener){
         this.itemClickListener = itemClickListener;
     }
 
     public interface ItemClickListener {
-        void onItemlick(View view, int position);
+        void onItemClick(View view, int position);
 
     }
 
