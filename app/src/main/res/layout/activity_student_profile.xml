@@ -74,6 +74,12 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
+        android:id="@+id/addResume"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Resume"
+        />
+    <Button
         android:id="@+id/addLink"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

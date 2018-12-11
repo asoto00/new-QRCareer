@@ -41,6 +41,7 @@ public class StudentProfile extends AppCompatActivity implements View.OnClickLis
     private Button editInfo;
     private Button saveInfoBtn;
     private Button AddLinkBtn;
+    private Button addResumeBtn;
     //private ImageView QRCode;
 
     private FirebaseAuth firebaseAuth;
@@ -90,6 +91,7 @@ public class StudentProfile extends AppCompatActivity implements View.OnClickLis
         saveInfoBtn=(Button)findViewById(R.id.saveInfo);
         AddLinkBtn=(Button)findViewById(R.id.addLink);
         Link = (EditText) findViewById(R.id.Link);
+        addResumeBtn=(Button)findViewById(R.id.addResume);
 
 
         SignOutButton = (Button) findViewById(R.id.SignOutButton);
@@ -99,6 +101,7 @@ public class StudentProfile extends AppCompatActivity implements View.OnClickLis
         editInfo.setOnClickListener(this);
         saveInfoBtn.setOnClickListener(this);
         AddLinkBtn.setOnClickListener(this);
+        addResumeBtn.setOnClickListener(this);
 
     }
 
@@ -194,6 +197,13 @@ public void editInfo(){
             }
 
 
+        }
+
+        else if(v==addResumeBtn){
+            //add link to linkedIn
+
+            startActivity(new Intent(this, ResumeActivity.class));
+            finish();
         }
 
         else if (v == genBtn) {
